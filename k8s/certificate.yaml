@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: hardtoget-dev-tls
+spec:
+  secretName: hardtoget-dev
+  issuerRef:
+    name: letsencrypt-prod
+    kind: cluster-issuer
+  commonName: hardtoget.dev
+  dnsNames:
+    - hardtoget.dev
+    - www.hardtoget.dev
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - hardtoget.dev
+          - www.hardtoget.dev
